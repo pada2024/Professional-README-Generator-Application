@@ -69,6 +69,49 @@ inquirer.prompt(questions)
     });
 
 // TODO: Create a function to write README file
+
+function generateREADME(data) {
+    return `
+# ${data.projectName}
+
+${data.description}
+
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Installation
+
+${data.installation}
+
+## Usage
+
+${data.usage}
+
+## Contributing
+
+${data.contributing}
+
+## License
+
+${data.license}
+`;
+}
+
+function createREADMEFile(data) {
+    const readmeContent = generateREADME(data);
+
+    fs.writeFile('README.md', readmeContent, (err) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        console.log('README.md file created successfully');
+    });
+}
+
 function writeToFile(fileName, data) { }
 
 // TODO: Create a function to initialize app
