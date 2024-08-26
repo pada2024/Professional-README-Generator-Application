@@ -1,9 +1,34 @@
 // TODO: Include packages needed for this application
-onst inquirer = require('inquirer');
+const inquirer = require('inquirer');
 const fs = require('fs');
 
+const generateREADME = ({ name, location, github, linkedin }) =>
+    `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <header class="p-5 mb-4 header bg-light">
+      <div class="container">
+        <h1 class="display-4">Hi! My name is ${name}</h1>
+        <p class> ${motivation}.</p>
+        <p class> ${build}.</p>
+        <p class> ${resolution}.</p>
+        <p class> ${installation}.</p>
+        <p class> ${education}.</p>
+        <p class> ${bugs}.</p>
+        <p class> ${contribute}.</p>
+      </div>
+    </header>
+  </body>
+  </html>`;
+
 // TODO: Create an array of questions for user input
-const questions = [
+inquirer.prompt(questions)([
     {
         type: 'input',
         name: 'name',
@@ -42,16 +67,16 @@ const questions = [
     },
 
     {
-        type: 'list',
+        type: 'input',
         name: 'bugs',
         message: 'How do you report issues with your app?',
     },
 
     {
-        type: 'input',
+        type: 'list',
         name: 'contribute',
         message: 'How can one contribute to this app?',
-        choices: ['Email', 'Phone', 'GitHub', 'Jira', ]
+        choices: ['Email', 'Phone', 'GitHub', 'Jira',]
     },
 
 
@@ -60,9 +85,8 @@ const questions = [
         name: 'confirm',
         message: 'Are you ready to proceed?',
     },
-];
+])
 
-inquirer.prompt(questions)
     .then((answers) => {
         console.log('User responses:');
         console.log(answers);
@@ -120,19 +144,3 @@ function init() { }
 // Function call to initialize app
 init();
 
-
-var inquirer = require('inquirer');
-inquirer
-    .prompt([
-        /* Pass your questions in here */
-    ])
-    .then((answers) => {
-        // Use user feedback for... whatever!!
-    })
-    .catch((error) => {
-        if (error.isTtyError) {
-            // Prompt couldn't be rendered in the current environment
-        } else {
-            // Something else went wrong
-        }
-    });
