@@ -2,37 +2,43 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const generateREADME = ({ name, location, github, linkedin }) =>
-    `<!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-    <title>Document</title>
-  </head>
-  <body>
-    <header class="p-5 mb-4 header bg-light">
-      <div class="container">
-        <h1 class="display-4">Hi! My name is ${name}</h1>
-        <p class> ${motivation}.</p>
-        <p class> ${build}.</p>
-        <p class> ${resolution}.</p>
-        <p class> ${installation}.</p>
-        <p class> ${education}.</p>
-        <p class> ${bugs}.</p>
-        <p class> ${contribute}.</p>
-      </div>
-    </header>
-  </body>
-  </html>`;
+// const generateREADME = ({ name, location, github, linkedin }) =>
+//     `<!DOCTYPE html>
+//   <html lang="en">
+//   <head>
+//     <meta charset="UTF-8">
+//     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+//     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+//     <title>Document</title>
+//   </head>
+//   <body>
+//     <header class="p-5 mb-4 header bg-light">
+//       <div class="container">
+//         <h1 class="display-4">Hi! My name is ${name}</h1>
+//         <p class> ${motivation}.</p>
+//         <p class> ${build}.</p>
+//         <p class> ${resolution}.</p>
+//         <p class> ${installation}.</p>
+//         <p class> ${education}.</p>
+//         <p class> ${bugs}.</p>
+//         <p class> ${contribute}.</p>
+//       </div>
+//     </header>
+//   </body>
+//   </html>`;
 
 // TODO: Create an array of questions for user input
-inquirer.prompt(questions)([
+inquirer.prompt([
     {
         type: 'input',
         name: 'name',
         message: 'What is your name?',
+    },
+
+    {
+        type: 'input',
+        name: 'description',
+        message: 'Please descrie your application?',
     },
 
     {
@@ -90,38 +96,82 @@ inquirer.prompt(questions)([
     .then((answers) => {
         console.log('User responses:');
         console.log(answers);
+        generateREADME(answers)
+
+        let READMETemplate = `# ${answers.name } 
+
+## Description
+${answers.description}
+
+## Table of Contents (Optional)
+
+If your README is long, add a table of contents to make it easy for users to find what they need.
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
+
+## Motivation
+${answers.motivation}
+
+## Usage
+
+
+
+## Credits
+
+
+
+## License
+
+
+## Badges
+
+       
+## Features
+
+
+## How to Contribute
+
+
+## Tests
+
+`
+console.log(READMETemplate);
     });
 
+    
 // TODO: Create a function to write README file
 
 function generateREADME(data) {
     return `
-# ${data.projectName}
+# ${ data.projectName }
 
-${data.description}
+${ data.description }
 
 ## Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+            - [Installation](#installation)
+            - [Usage](#usage)
+            - [Contributing](#contributing)
+            - [License](#license)
 
 ## Installation
 
-${data.installation}
+${ data.installation }
 
 ## Usage
 
-${data.usage}
+${ data.usage }
 
 ## Contributing
 
-${data.contributing}
+${ data.contributing }
 
 ## License
 
-${data.license}
-`;
+${ data.license }
+        `;
 }
 
 function createREADMEFile(data) {
