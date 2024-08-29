@@ -37,6 +37,13 @@ inquirer.prompt([
 
     {
         type: 'input',
+        name: 'Title',
+        message: 'What is the name of your app?',
+    },
+
+
+    {
+        type: 'input',
         name: 'description',
         message: 'Please descrie your application?',
     },
@@ -59,12 +66,6 @@ inquirer.prompt([
         message: 'How do you use your app and What problem does your application solve?',
     },
 
-    {
-        type: 'input',
-        name: 'installation',
-        message: 'How do you install this app?',
-    },
-
 
     {
         type: 'input',
@@ -82,6 +83,13 @@ inquirer.prompt([
         type: 'list',
         name: 'contribute',
         message: 'How can one contribute to this app?',
+        choices: ['Public', 'GNU', 'Permissive', 'Copyleft', 'Proprietary',]
+    },
+
+    {
+        type: 'list',
+        name: 'license',
+        message: 'How can one contribute to this app?',
         choices: ['Email', 'Phone', 'GitHub', 'Jira',]
     },
 
@@ -98,12 +106,14 @@ inquirer.prompt([
         console.log(answers);
         generateREADME(answers)
 
-        let READMETemplate = `# ${answers.name } 
+        let READMETemplate = `# ${answers.name} 
+
 
 ## Description
 ${answers.description}
 
 ## Table of Contents (Optional)
+${answers.terms}
 
 If your README is long, add a table of contents to make it easy for users to find what they need.
 
@@ -112,43 +122,45 @@ If your README is long, add a table of contents to make it easy for users to fin
 - [Credits](#credits)
 - [License](#license)
 
+## Title
+${answers.title}
+
 ## Motivation
 ${answers.motivation}
 
-## Usage
+## Build
+${answers.build}
 
 
+## Resolution
 
-## Credits
+${answers.resolution}
+
+## Education
+${answers.education}
 
 
+## Bugs
+${answers.bugs}
+       
+## How to Contribute
+${answers.contribute}
 
 ## License
-
-
-## Badges
-
-       
-## Features
-
-
-## How to Contribute
-
-
-## Tests
+${answers.license}
 
 `
-console.log(READMETemplate);
+        console.log(READMETemplate);
     });
 
-    
+
 // TODO: Create a function to write README file
 
 function generateREADME(data) {
     return `
-# ${ data.projectName }
+# ${data.projectName}
 
-${ data.description }
+${data.description}
 
 ## Table of Contents
             - [Installation](#installation)
@@ -158,19 +170,19 @@ ${ data.description }
 
 ## Installation
 
-${ data.installation }
+${data.installation}
 
 ## Usage
 
-${ data.usage }
+${data.usage}
 
 ## Contributing
 
-${ data.contributing }
+${data.contributing}
 
 ## License
 
-${ data.license }
+${data.license}
         `;
 }
 
