@@ -21,7 +21,7 @@ inquirer.prompt([
     {
         type: 'input',
         name: 'description',
-        message: 'Please descrie your application?',
+        message: 'Please describe your application?',
     },
 
     {
