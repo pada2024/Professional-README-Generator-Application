@@ -17,6 +17,19 @@ function renderLicenseSection(license) {
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(answers) {
   console.log(answers);
+
+  let licenseString= ''
+// if user selects GNU 
+if (answers.license ==='GNU'){
+  licenseString= '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)'
+}
+
+else if (answers.license === 'Public') {
+  licenseString= '[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)'
+
+}
+
+
   return `# ${answers.name} 
 
 ## Description
@@ -56,7 +69,7 @@ ${answers.bugs}
 ${answers.contribute}
 
 ## License
-${answers.license}
+${licenseString}
 
 `;
 }

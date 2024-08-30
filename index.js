@@ -61,12 +61,12 @@ inquirer.prompt([
     //     message: 'How can one contribute to this app?',
     // },
 
-    // {
-    //     type: 'list',
-    //     name: 'license',
-    //     message: 'How can one contribute to this app?',
-    //     choices: ['Public', 'GNU', 'Permissive', 'Copyleft', 'Proprietary',]
-    // },
+    {
+        type: 'list',
+        name: 'license',
+        message: 'How can one contribute to this app?',
+        choices: ['Public', 'GNU', 'Permissive', 'Copyleft', 'Proprietary',]
+    },
 
 
     // {
